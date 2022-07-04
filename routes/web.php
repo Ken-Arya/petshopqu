@@ -21,11 +21,21 @@ Route::get('/', function () {
         "title" => "Home"
     ]);
 });
+
+Route::get('/admin', function () {
+    return view('dashboard.index', [
+        "title" => "Admin Dashboard"
+    ]);
+})->middleware('auth');
+
 Route::get('/produk', [ProdukController::class, 'produk']);
 Route::get('/produk/{post:slug}', [ProdukController::class, 'produkshow']);
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/admin', [AdminDashboardController::class, 'index']);
+
+// Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware('auth');
+// Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');

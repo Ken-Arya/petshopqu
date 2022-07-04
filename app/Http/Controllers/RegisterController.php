@@ -31,6 +31,7 @@ class RegisterController extends Controller
             'role' => "member",
             'alamat_pelanggan' => strtolower($request->input('alamat_pelanggan')),
             'no_hp' => ($request->input('no_hp')),
+            'remember_token' => ''
         ]);
         return redirect('/login');
     }

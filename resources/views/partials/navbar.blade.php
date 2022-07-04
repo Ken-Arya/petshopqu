@@ -25,24 +25,37 @@
 
 
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Action
-                </button>
-                <ul class="dropdown-menu">
-                    @auth
-                        <li><a class="dropdown-item" href="#">Admin Dashboard</a></li>
-                    @else
-                        <li><a class="dropdown-item" href="#">Admin</a></li>
-                    @endauth
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
-                <a class="nav-link {{ $title === 'Login' ? 'active' : '' }}" href="/login">
-                    <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                </a>
+                @auth
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{ auth()->user()->nama_pelanggan }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="/admin">
+                                    Dashboard Admin
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button type="submit" class="dropdown-item">
+                                    <i class="bi bi-box-arrow-right">
+                                    </i>
+                                    Logout
+                                </button>
+                            </form>
+                        </ul>
+                    </div>
+                @else
+                    <a class="nav-link {{ $title === 'Login' ? 'active' : '' }}" href="/login">
+                        <button type="button" class="btn btn-outline-primary me-2">Login
+                        </button>
+                    </a>
+                @endauth
             </div>
         </header>
     </div>
@@ -50,3 +63,64 @@
 
 
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+{{-- <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown"
+aria-expanded="false">
+Action
+</button>
+<ul class="dropdown-menu">
+@auth
+    <li><a class="dropdown-item" href="/admin">Admin Dashboard</a></li>
+@else
+    <li><a class="dropdown-item" href="/admin">Admin</a></li>
+@endauth
+<li>
+    <hr class="dropdown-divider">
+</li>
+<li>
+    <form action="/logout" method="post">
+        <button type="submit" class="dropdown-item"><i
+                class="bi bi-box-arrow-right"></i>Logout</button>
+    </form>
+</li>
+</ul>
+<a class="nav-link {{ $title === 'Login' ? 'active' : '' }}" href="/login">
+<button type="button" class="btn btn-outline-primary me-2">Login</button>
+</a> --}}
+
+
+{{-- @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Welcome back, {{ auth()->user()->nama_pelanggan }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="/dashboard">
+                                    <i class="bi bi-layout-text-sidebar-reverse">
+                                    </i>
+                                    Dashboard Admin
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="/logout" method="post">
+                                    <button type="submit" class="dropdown-item"><i
+                                            class="bi bi-box-arrow-right"></i>Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {{ $title === 'Login' ? 'active' : '' }}" href="/login">
+                                <button type="button" class="btn btn-outline-primary me-2">Login
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                @endauth --}}

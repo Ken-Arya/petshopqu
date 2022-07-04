@@ -23,10 +23,10 @@ class User extends Authenticatable
     //     'password',
     // ];
 
-
+    protected $primaryKey = 'ID_pelanggan';
     public $timestamps = false;
     protected $table = 'tabel_pelanggan';
-    protected $guarded = ['id', 'id_pelanggan', 'updated_at'];
+    protected $guarded = 'ID_pelanggan';
     /**
      * The attributes that should be hidden for serialization.
      *
