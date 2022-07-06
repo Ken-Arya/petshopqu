@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminProdukController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function () {
-    return view('dashboard.index', [
+    return view('admin.index', [
         "title" => "Admin Dashboard"
     ]);
 })->middleware('auth');
@@ -36,6 +37,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+Route::resource('/admin/data-produk', AdminProdukController::class)->middleware('auth');
 
 // Route::get('/admin', [AdminDashboardController::class, 'index'])->middleware('auth');
 // Route::post('/login', [LoginController::class, 'authenticate'])->name('login.post');

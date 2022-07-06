@@ -19,7 +19,7 @@ class ProdukController extends Controller
     {
         return view('produk', [
             "title" => $post->nama_produk,
-            // "product" => $post
+            "product" => $post
         ]);
     }
 }
