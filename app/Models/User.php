@@ -27,6 +27,14 @@ class User extends Authenticatable
     public $timestamps = false;
     protected $table = 'tabel_pelanggan';
     protected $guarded = 'ID_pelanggan';
+    protected $fillable = ['username',
+    'password',
+    'role',
+    'nama_pelanggan',
+    'alamat_pelanggan',
+    'no_hp',
+    'remember_token'
+    ];
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Unique;
 
 class RegisterController extends Controller
 {
@@ -17,11 +18,11 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_pelanggan' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-            'alamat_pelanggan' => 'required',
-            'no_hp' => 'required'
+            'nama_pelanggan' => 'required|max:65',
+            'username' => 'required|unique:tabel_pelanggan|max:25',
+            'password' => 'required|max:255',
+            'alamat_pelanggan' => 'required|max:255',
+            'no_hp' => 'required|max:12'
         ]);
 
         $user = User::create([
@@ -35,4 +36,5 @@ class RegisterController extends Controller
         ]);
         return redirect('/login');
     }
+    
 }

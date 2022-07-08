@@ -14,7 +14,7 @@
         <div class="center-screen">
             <div class="row">
                 <div class="col">
-                    <img src="{{ asset('storage/img/kucing.jpg') }}" width=100% height=100%>
+                    <img src="data:image/jpg;charset=utf8;base64,{{ $product->gambar_produk }}" width=100% height=100%>
                     <a href="/produk">Kembali ke menu produk </a>
                 </div>
                 <div class="col align-self-center">
