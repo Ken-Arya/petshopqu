@@ -15,11 +15,7 @@
                     <a class="nav-link {{ $title === 'Produk' ? 'active' : '' }}" href="/produk">Produk</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $title === 'Blog' ? 'active' : '' }}" href="/blog">Keranjang</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $title === 'Jadwal Pelajaran' ? 'active' : '' }}"
-                        href="/jadwalpelajaran">Test</a>
+                    <a class="nav-link {{ $title === 'Keranjang' ? 'active' : '' }}" href="/keranjang">Keranjang</a>
                 </li>
             </ul>
 

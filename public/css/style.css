@@ -39,3 +39,8 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
+
+.box {
+    inline-size: 250px;
+    overflow-wrap: break-word;
+}

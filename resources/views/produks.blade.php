@@ -24,7 +24,8 @@
         @foreach ($produk as $product)
             <div class="col">
                 <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="data:image/jpg;charset=utf8;base64,{{ $product->gambar_produk }}" width=300px height=300px
+                        class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">Rp. {{ $product->harga_produk }}</h5>
                         <p class="card-text">{{ $product->nama_produk }}</p>
