@@ -14,7 +14,7 @@
         <div class="center-screen">
             <div class="row">
                 <div class="col">
-                    <img src="{{ asset('storage/img/kucing.jpg') }}" width=100% height=100%>
+                    <img src="data:image/jpg;charset=utf8;base64,{{ $product->gambar_produk }}" width=100% height=100%>
                     <a href="/produk">Kembali ke menu produk </a>
                 </div>
                 <div class="col align-self-center">
@@ -34,8 +34,10 @@
                         </h2>
 
                         <div class="col">
-                            <a href="/jadwalpelajaran">
-                                <button type="button" class="btn btn-primary">Tambahkan ke keranjang</button>
+                            <a href="/keranjang">
+                                <button type="button" class="btn btn-primary" value="{{ $product->ID_produk }}">Tambahkan
+                                    ke
+                                    keranjang</button>
                             </a>
                         </div>
                     </article>

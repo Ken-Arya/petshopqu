@@ -13,6 +13,20 @@
                     Data Produk
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('admin/data-pelanggan') ? 'active' : '' }}"
+                    href="/admin/data-pelanggan">
+                    <span data-feather="file-text" class="align-text-bottom"></span>
+                    Data Pelanggan
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('admin/data-pembelian') ? 'active' : '' }}"
+                    href="/admin/data-pembelian">
+                    <span data-feather="file-text" class="align-text-bottom"></span>
+                    Data Pembelian
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

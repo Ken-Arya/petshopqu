@@ -41,7 +41,34 @@ class AdminProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $validatedData = $request->validate([
+            'nama_produk' => 'required',
+            'deskripsi_produk' => 'required',
+            'harga_produk' => 'required',
+            'slug' => 'required',
+            'stock' => 'required',
+            'gambar_produk' => 'required'
+        ]);
+        $image = base64_encode(file_get_contents($request->file('gambar_produk')));
+        // dd($request->all());
+        // $produk = Produk::create([
+        //     'nama_produk' => ($request->input('nama_produk')),
+        //     'deskripsi_produk' => ($request->input('deskripsi_produk')),
+        //     'harga_produk' => ($request->input('harga_produk')),
+        //     'slug' => ($request->input('slug')),
+        //     'stock' => ($request->input('stock'))
+        // ]);
+        // Produk::create($validatedData);
+        Produk::create([
+            'nama_produk' => ($request->input('nama_produk')),
+            'deskripsi_produk' => ($request->input('deskripsi_produk')),
+            'harga_produk' => ($request->input('harga_produk')),
+            'slug' => ($request->input('slug')),
+            'stock' => ($request->input('stock')),
+            'gambar_produk' => ($image)
+        ]);
+        return back()->with('berhasilTambah', 'Data produk berhasil ditambahkan!');
     }
 
     /**
@@ -73,9 +100,31 @@ class AdminProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produk $produk)
+    public function update(Request $request, $productID)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_produk' => ['required'],
+            'deskripsi_produk' => ['required'],
+            'harga_produk' => ['required'],
+            'slug' => ['required'],
+            'stock' => ['required'],
+            'gambar_produk' => ['required']
+        ]);
+        $image = base64_encode(file_get_contents($request->file('gambar_produk')));
+        // Produk::where('ID_produk', $productID->ID_produk)
+                // ->update($validatedData);   
+        $product=Produk::find($productID);
+        $product=$product->update([
+            'nama_produk' => ($request->input('nama_produk')),
+            'deskripsi_produk' => ($request->input('deskripsi_produk')),
+            'harga_produk' => ($request->input('harga_produk')),
+            'slug' => ($request->input('slug')),
+            'stock' => ($request->input('stock')),
+            'gambar_produk' => ($image)
+        ]);
+        // dd($request->slug);      
+        // dd($validatedData);
+        return back()->with('berhasilEdit', 'Data produk berhasil diedit!');
     }
 
     /**
@@ -84,8 +133,10 @@ class AdminProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produk $produk)
+    public function destroy($product)
     {
-        //
+        $product = Produk::find($product);
+        $product->delete();
+        return back()->with('berhasilHapus', 'Data produk berhasil dihapus');
     }
 }
